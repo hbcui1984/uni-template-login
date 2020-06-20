@@ -4,20 +4,10 @@
 			<view class="title">
 				您好 {{userName}}，您已成功登录。
 			</view>
-			<view class="ul">
-				<view>这是 uni-app 带登录模板的示例App首页。</view>
-				<view>在 “我的” 中点击 “退出” 可以 “注销当前账户”</view>
-			</view>
-		</view>
-		<view v-if="!hasLogin" class="hello">
-			<view class="title">
-				您好 游客。
-			</view>
-			<view class="ul">
-				<view>这是 uni-app 带登录模板的示例App首页。</view>
-				<view>在 “我的” 中点击 “登录” 可以 “登录您的账户”</view>
-			</view>
-		</view>
+      <uni-list>
+        <uni-list-item v-for="item in list" :key="item._id" title=""></uni-list-item>
+      </uni-list>
+		
 	</view>
 </template>
 
@@ -27,6 +17,11 @@
 	} from 'vuex'
 
 	export default {
+    data(){
+      return{
+        list:[]
+      }
+    },
 		computed: mapState(['forcedLogin', 'hasLogin', 'userName']),
 		onLoad() {
 			if (!this.hasLogin) {
@@ -54,7 +49,9 @@
 						}
 					}
 				});
-			}
+			}else{
+        //获取股票列表
+      }
 		}
 	}
 </script>
